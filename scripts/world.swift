@@ -1,8 +1,13 @@
-#!/usr/bin/swift
+#!/usr/bin/env swift
 import Foundation
+#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+import Darwin
+#elseif os(Linux)
+import Glibc
+#endif
 
 if Process.arguments.count != 2 {
-	println("usage: ./world <adjective>")
+	print("usage: ./world <adjective>")
 	exit(0)
 }
 
@@ -10,4 +15,5 @@ if Process.arguments.count != 2 {
 var adjective = Process.arguments[1]
 
 // Print output
-println("The world is = \(adjective)")
+print("The world is = \(adjective)")
+
